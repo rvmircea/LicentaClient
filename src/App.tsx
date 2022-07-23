@@ -1,14 +1,13 @@
 import { createContext, useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Outlet } from 'react-router-dom'
-import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Categories from './pages/Categories';
 import Home from './pages/Home'
 import ProductPage from './pages/ProductPage';
 import ProductCategory from './pages/ProductCategory';
 import ProductList from './pages/ProductList';
+import { ProducersPage } from './pages/ProducersPage';
 
 const queryClient = new QueryClient()
 
@@ -32,7 +31,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<ProductList />} />
             <Route path="/products/:productId" element={<ProductPage />} />
-
+            <Route path='/producers' element={<ProducersPage/>} />
             <Route path="/products/category/:categoryId" element={<ProductCategory />} />
             <Route path="categories" element={<Categories />} />
           </Routes>
