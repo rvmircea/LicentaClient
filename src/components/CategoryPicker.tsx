@@ -14,21 +14,21 @@ const CategoryPicker = () => {
                     isActive ? activeStyle : unactiveStyle
                 }
             >
-                <span>Beer</span>
+                <span>Bere</span>
             </NavLink>
             <span className='mx-2 border border-zinc-700'></span>
             <NavLink to={'/products/category/2'}
                 className={({ isActive }) =>
                     isActive ? activeStyle : unactiveStyle
                 }>
-                <span>Wine</span>
+                <span>Vin</span>
             </NavLink>
             <span className='mx-2 border border-zinc-700'></span>
             <NavLink to={'/products/category/3'}
                 className={({ isActive }) =>
                     isActive ? activeStyle : unactiveStyle
                 }>
-                <span>Other</span>
+                <span>Altele</span>
             </NavLink>
         </div>
     )
