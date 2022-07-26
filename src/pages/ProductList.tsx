@@ -75,7 +75,7 @@ const ProductList = () => {
             </div>
           ))
             :
-            <div> Nu au fost gasite produse </div>
+            <div> Nu au fost gasite produse</div>
           }
         </div>
       </div>

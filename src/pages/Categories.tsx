@@ -5,7 +5,7 @@ const Categories = () => {
   return (
     <main className="bg-white z-0 flex align-middle justify-center p-8">
       <div className="max-w-2xl mx-auto px-4 sm:py-12 sm:px-6 lg:max-w-7xl lg:px-6 border-t-2 border-t-zinc-100 shadow-md">
-        <section className="md:grid space-y-2 grid-cols-1 grid-rows-1 gap-y-2 gap-x-4 sm:grid-cols-2 xl:gap-x-4 md:grid-rows-4">
+        <section className="md:grid space-y-2 grid-cols-1 grid-rows-1  md:grid-cols-2  gap-y-2 gap-x-4 sm:grid-cols-2 xl:gap-x-4 xl:grid-rows-4 font-semibold">
           <article className='col-start-1 row-span-2 text-center'>
           <h1 className='text-2xl lg:text-xl font-medium'>Beri.</h1>
             <Link to="/products/category/1">

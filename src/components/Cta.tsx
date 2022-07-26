@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const Cta = () => {
     return (
-        <main className=' flex items-center justify-center h-screen lg:px-32 -mt-14 pt-36 mx-auto overflow-hidden bg-transparent -z-10'>
+        <main className=' flex items-center justify-center h-screen px-2 -mt-32 lg:px-32 lg:-mt-14 pt-36 mx-auto overflow-hidden bg-transparent -z-10'>
             <div className='flex flex-col items-center'>
                 <div>
                     <section className='grid grid-cols-4 p-4 bg-slate-100 md:bg-transparent'>
