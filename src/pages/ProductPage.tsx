@@ -4,13 +4,14 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { getSingleProduct } from '../api/productsApi';
 import LoadingBar from '../components/LoadingBar';
 import { Product } from '../interfaces/IProductList';
-import { Disclosure } from '@headlessui/react';
+import { Disclosure, Transition } from '@headlessui/react';
+import BackButton from '../components/backButton';
 
 const ProductPage = () => {
 
     const queryClient = useQueryClient()
     const param = useParams();
-    const navigate = useNavigate();
+    
     const { data, isLoading, isError, error } = useQuery<Product>('singleProduct', () => getSingleProduct(+param.productId!));
 
     if (isLoading) {
@@ -27,16 +28,7 @@ const ProductPage = () => {
     return (
         <div className='backgroundCustom border-2 border-b-zinc-600'>
             <section className='bg-white/80 my-16 mx-16 border-t border-t-zinc-200 shadow-md p-2 rounded-md'>
-                <div className='flex justify-start align-middle'>
-                    <button onClick={() => navigate(-1)}>
-                        <span className='inline-flex justify-center align-middle'>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mx-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                            </svg>
-                            <span>Inapoi</span>
-                        </span>
-                    </button>
-                </div>
+                <BackButton />
                 <div className='flex justify-center align-middle max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8'>
                     <article className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
                         <div className='rounded-md border border-t-zinc-200 shadow-md'>
@@ -68,13 +60,22 @@ const ProductPage = () => {
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
                                             </svg>
                                         </Disclosure.Button>
-                                        <Disclosure.Panel className="flex flex-col p-2 text-gray-600">
-                                            <div className='flex flex-col'>
-                                                <span>Denumire: {data?.producer.name} - {data?.producer.description}</span>
-                                                <span>Fondat: {data?.producer.yearFounded}</span>
-                                                <span>Adresa: {data?.producer.producerAddress.address} {data?.producer.producerAddress.city}</span>
-                                            </div>
-                                        </Disclosure.Panel>
+                                        <Transition
+                                            enter="transition duration-100 ease-out"
+                                            enterFrom="transform scale-95 opacity-0"
+                                            enterTo="transform scale-100 opacity-100"
+                                            leave="transition duration-75 ease-out"
+                                            leaveFrom="transform scale-100 opacity-100"
+                                            leaveTo="transform opacity-0"
+                                        >
+                                            <Disclosure.Panel className="flex flex-col p-2 text-gray-600 bg-zinc-50">
+                                                <div className='flex flex-col'>
+                                                    <span>Denumire: {data?.producer.name} - {data?.producer.description}</span>
+                                                    <span>Fondat: {data?.producer.yearFounded}</span>
+                                                    <span>Adresa: {data?.producer.producerAddress.address} {data?.producer.producerAddress.city}</span>
+                                                </div>
+                                            </Disclosure.Panel>
+                                        </Transition>
                                     </>
                                 )}
                             </Disclosure>

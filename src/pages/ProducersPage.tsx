@@ -1,14 +1,17 @@
 import { Disclosure, Transition } from '@headlessui/react';
-import React from 'react'
+import React, { useState } from 'react'
 import { useQuery } from 'react-query'
 import { getProducers } from '../api/producersApi'
 import LoadingBar from '../components/LoadingBar';
 import { Producer } from '../interfaces/IProductList';
 
+
 export const ProducersPage = () => {
 
+  const [searchInput, setSearchInput] = useState("");
   const { data, isLoading, isError, error } = useQuery<Producer[]>("producers", getProducers);
 
+  
   if (isError) {
     console.error(error);
     return <div>
@@ -23,17 +26,23 @@ export const ProducersPage = () => {
   if (data) {
     return (
       <>
-        
         <main className='flex justify-center align-middle mt-40 bg-white z-0'>
-          <div className="w-4xl mx-auto py-4 px-4 sm:py-8 sm:px-6 lg:w-7xl lg:px-6 border-t-2 border-t-zinc-100 shadow-md">
-          <p className='text-2xl font-bold text-orange-700 mb-8'>Lista cu producatorii noștrii: </p>
+          <div className="w-4xl mx-auto py-4 px-4 sm:py-8 sm:px-6 lg:w-7xl lg:px-6 border-t-2 border-t-zinc-100 shadow-md" >
+          <p className='text-2xl font-bold text-orange-700 mb-4'>Lista cu producatorii noștrii: </p>
+          
+            <input value={searchInput} 
+            onChange={(event) => setSearchInput(event.target.value)} 
+            placeholder={"Cauta producatori"}
+            className="border-2 border-zinc-200 rounded-md p-2 mb-4 focus-within:border-orange-600 outline-none"
+            />
+            
             <section className='grid justify-items-stretch gap-y-4 sm:grid-cols-2 xl:gap-x-6 sm:gap-y-8'>
-              {data ? data.map(producer => (
+              {data ? data.filter(producer => producer.name.toLowerCase().includes(searchInput.toLowerCase())).map(producer => (
                 <article key={producer.id} className="rounded-md p-2">
                   <Disclosure>
                     {({ open }) => (
                       <>
-                        <Disclosure.Button className="flex justify-between align-middle p-2 rounded-md text-md font-semibold text-orange-700 md:text-lg md:font-extrabold shadow-md hover:bg-orange-50 border-t-zinc-100">
+                        <Disclosure.Button className="flex justify-between align-middle p-2 rounded-md text-md font-semibold text-orange-700 md:text-lg md:font-extrabold shadow-md hover:bg-orange-50 border-t-zinc-100 transition-colors duration-100">
                           <span className='mr-2'>{producer.name}</span>
                           
                           <svg xmlns="http://www.w3.org/2000/svg" className={`${open ? `rotate-180 text-zinc-500` : `text-zinc-600`} h-6 w-6`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

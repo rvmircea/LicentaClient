@@ -8,22 +8,24 @@ import ProductPage from './pages/ProductPage';
 import ProductCategory from './pages/ProductCategory';
 import ProductList from './pages/ProductList';
 import { ProducersPage } from './pages/ProducersPage';
-
-const queryClient = new QueryClient()
-
-interface CategoryContextInterface {
-  productType: string;
-  setProductType(type: string): void;
-}
-
-export const CategoryContext = createContext({} as CategoryContextInterface);
+import NotFound from './pages/NotFound';
+import { useAuth0 } from '@auth0/auth0-react';
+import LoadingBar from './components/LoadingBar';
+import CallbackPage from './pages/CallBackPage';
+import { ProtectedRoute } from './components/ProtectedRoute';
+import Profile from './pages/Profile';
 
 
 function App() {
-  const [productType, setProductType] = useState("");
+  
+  const { isLoading } = useAuth0();
+
+  if(isLoading) {
+    return <LoadingBar/>
+  }
 
   return (
-    <CategoryContext.Provider value={{ productType, setProductType }}>
+
       <QueryClientProvider client={new QueryClient}>
         <BrowserRouter>
           <Navbar />
@@ -33,11 +35,14 @@ function App() {
             <Route path="/products/:productId" element={<ProductPage />} />
             <Route path='/producers' element={<ProducersPage/>} />
             <Route path="/products/category/:categoryId" element={<ProductCategory />} />
-            <Route path="categories" element={<Categories />} />
+            <Route path="/categories" element={<Categories />} />
+            <Route path="/callback" element={<CallbackPage />} />
+            <Route path="/profile" element={<ProtectedRoute component={Profile}/>} />
+            <Route path="*" element={<NotFound/>} />
           </Routes>
         </BrowserRouter>
       </QueryClientProvider>
-    </CategoryContext.Provider>
+
   )
 }
 
