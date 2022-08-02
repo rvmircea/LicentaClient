@@ -38,8 +38,7 @@ const Categories = () => {
                 alt="Produse din cateogria bere"
                 className='hover:opacity-80 rounded-md lg:w-[64rem] lg:h-[22rem] transition-all duration-100 ease-in-out' />
             </Link>
-          </article>
-          
+          </article> 
         </section>
       </div>
     </main>

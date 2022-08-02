@@ -45,9 +45,7 @@ const Cta = () => {
                         </div>
                     </section>
                 </div>
-
             </div>
-
         </main>
     )
 }

@@ -16,7 +16,10 @@ export const Auth0ProviderWithConfig = ({ children }: PropsWithChildren<Auth0Pro
         <Auth0Provider domain={domain}
             clientId={clientId}
             redirectUri={redirectUri}
-            audience={audience}>
+            audience={audience}
+            scope="read:current_user update:current_user_metadata buy:products"
+            >
+            
             {children}
         </Auth0Provider>
     )

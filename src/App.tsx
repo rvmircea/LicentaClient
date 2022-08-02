@@ -11,7 +11,7 @@ import { ProducersPage } from './pages/ProducersPage';
 import NotFound from './pages/NotFound';
 import { useAuth0 } from '@auth0/auth0-react';
 import LoadingBar from './components/LoadingBar';
-import CallbackPage from './pages/CallBackPage';
+import CallbackPage from './pages/CallbackPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import Profile from './pages/Profile';
 

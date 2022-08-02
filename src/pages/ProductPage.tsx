@@ -5,7 +5,7 @@ import { getSingleProduct } from '../api/productsApi';
 import LoadingBar from '../components/LoadingBar';
 import { Product } from '../interfaces/IProductList';
 import { Disclosure, Transition } from '@headlessui/react';
-import BackButton from '../components/backButton';
+import BackButton from '../components/BackButton';
 
 const ProductPage = () => {
 
