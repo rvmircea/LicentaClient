@@ -52,14 +52,17 @@ const Navbar = () => {
         )}
         {isAuthenticated && (
           <>
-          <NavLink to="/cart" className={({ isActive }) =>
+            <NavLink to="/cart" className={({ isActive }) =>
               isActive ? activeStyle : unactiveStyle}>
-                Coș</NavLink>
+              Coș</NavLink>
+              <div className='mt-2 flex bg-zinc-100 rounded-md shadow-md'>
             <NavLink to="/profile" className="mx-4 hover:text-orange-600">
-              Profil
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
             </NavLink>
             <LogoutButton style='hover:text-orange-600 mx-1 px-3' />
-            
+              </div>
           </>
         )}
       </div>
@@ -96,9 +99,9 @@ const Navbar = () => {
               </Menu.Item>
               {isAuthenticated && (
                 <>
-                <Menu.Item>
-                      <NavLink to="/cart" className="p-2 text-md hover:text-gray-100 hover:bg-orange-700 transition-color duration-100">Cos cumparaturi</NavLink>
-                    </Menu.Item>
+                  <Menu.Item>
+                    <NavLink to="/cart" className="p-2 text-md hover:text-gray-100 hover:bg-orange-700 transition-color duration-100">Cos cumparaturi</NavLink>
+                  </Menu.Item>
                   <Menu.Item>
                     <NavLink to="/profile" className="p-2 text-md hover:text-gray-100 hover:bg-orange-700 transition-color duration-100">Profil</NavLink>
                   </Menu.Item>
@@ -107,7 +110,7 @@ const Navbar = () => {
                       <LogoutButton style='p-2 text-md hover:text-gray-100 hover:bg-orange-700 transition-color duration-100' />
                     </div>
                   </Menu.Item>
-                  
+
                 </>
               )}
               {

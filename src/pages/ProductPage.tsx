@@ -50,14 +50,14 @@ const ProductPage = () => {
 
     return (
         <div className='backgroundCustom border-2 border-b-zinc-600'>
-            <section className='bg-white/80 my-16 mx-16 border-t border-t-zinc-200 shadow-md p-2 rounded-md'>
+            <section className='bg-white/80 my-8 md:my-16 mx-8 md:mx-16 border-t border-t-zinc-200 shadow-md p-2 rounded-md'>
                 <BackButton />
                 <div className='flex justify-center align-middle max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8'>
                     <article className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
-                        <div className='rounded-md border border-t-zinc-200 shadow-md'>
-                            <img src={data?.imgUrl} alt={"Imagine produs"} className="w-full h-full object-center object-cover lg:w-full lg:h-full" />
+                        <div className='rounded-md border border-t-zinc-200 shadow-md'> 
+                            <img src={data?.imgUrl} alt={"Imagine produs"} className="rounded-sm" />
                         </div>
-                        <div className='bg-white flex justify-start flex-col align-middle space-y-6 p-2 border-2 border-t-zinc-200 shadow-md'>
+                        <div className='bg-white flex justify-start flex-col align-middle space-y-6 p-2 border-2 border-t-zinc-200 shadow-md rounded-sm'>
                             <div className='flex justify-between text-md sm:text-2xl lg:text-3xl p-2'>
                                 <span>
                                     {data?.name}

@@ -45,3 +45,15 @@ catch(e){
     }
 }
 }
+
+export const removeAllFromCart = async(userId:string | undefined) => {
+    try{
+        const response = await cartApi.delete("",{params: {userId}});
+        return response.data;
+    }
+    catch(e){
+        if(axios.isAxiosError(e)){
+            console.error(e.message, e.response);
+        }
+    }
+}
