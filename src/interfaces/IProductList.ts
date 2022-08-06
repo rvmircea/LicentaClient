@@ -34,3 +34,19 @@ export interface ProducerAddress{
     addressNumber: number;
     zipCode: number;
 }
+
+export interface BasketItem{
+    id?: number;
+    userId: string | undefined;
+    quantity: number | undefined;
+    productId: number | undefined;
+    product: Product | undefined;
+}
+
+export interface Basket{
+    id: number;
+    userId: string;
+    basketItems: BasketItem[];
+    totalItems: number;
+    totalPrice: number;
+}

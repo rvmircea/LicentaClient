@@ -56,6 +56,8 @@ const Navbar = () => {
               Profil
             </NavLink>
             <LogoutButton style='hover:text-orange-600 mx-1 px-3' />
+            <NavLink to="/cart" className={({ isActive }) =>
+            isActive ? activeStyle : unactiveStyle}>Cart</NavLink>
           </>
         )}
       </div>

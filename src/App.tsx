@@ -14,6 +14,7 @@ import LoadingBar from './components/LoadingBar';
 import CallbackPage from './pages/CallbackPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import Profile from './pages/Profile';
+import ShoppingCart from './pages/ShoppingCart';
 
 
 function App() {
@@ -38,9 +39,11 @@ function App() {
             <Route path="/categories" element={<Categories />} />
             <Route path="/callback" element={<CallbackPage />} />
             <Route path="/profile" element={<ProtectedRoute component={Profile}/>} />
+            <Route path="/cart" element={<ShoppingCart/>} />
             <Route path="*" element={<NotFound/>} />
           </Routes>
         </BrowserRouter>
+        
       </QueryClientProvider>
 
   )

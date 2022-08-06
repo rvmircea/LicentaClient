@@ -6,12 +6,27 @@ import LoadingBar from '../components/LoadingBar';
 import { Product } from '../interfaces/IProductList';
 import { Disclosure, Transition } from '@headlessui/react';
 import BackButton from '../components/BackButton';
+import { useAuth0 } from '@auth0/auth0-react';
+import { addToCart } from '../api/cartApi';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const ProductPage = () => {
 
-    const queryClient = useQueryClient()
+    const notify = () => toast('Produsul a fost adaugat in coș', {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        });
+
     const param = useParams();
-    
+
+    const { user, isAuthenticated } = useAuth0();
+
     const { data, isLoading, isError, error } = useQuery<Product>('singleProduct', () => getSingleProduct(+param.productId!));
 
     if (isLoading) {
@@ -23,6 +38,14 @@ const ProductPage = () => {
         return <div>
             <h1>Eroare la primirea datelor</h1>
         </div>
+    }
+
+    const addToCartButton = async () => {
+        const response = await addToCart(user?.sub, {userId: user?.sub, quantity: 1, productId: data?.id, product: data})
+        // const response = true;   
+        if (response) {
+            notify();
+        }
     }
 
     return (
@@ -79,14 +102,36 @@ const ProductPage = () => {
                                     </>
                                 )}
                             </Disclosure>
-                            <button className='flex mx-auto justify-center align-middle p-2 w-1/2 lg:w-1/3 bg-orange-700 hover:bg-orange-600 text-white border-2 border-zinc-200 '>
-                                <span className='md:text-md lg:text-xl'>
-                                    Adauga in coș
-                                </span>
-                            </button>
+                            {isAuthenticated ? (
+                                <>
+                                    <button onClick={addToCartButton}
+                                        className='flex mx-auto justify-center align-middle p-2 w-1/2 lg:w-1/3 bg-orange-700 hover:bg-orange-600 text-white border-2 border-zinc-200 '>
+                                        <span className='md:text-md lg:text-xl'>
+                                            Adauga in coș
+                                        </span>
+                                    </button>
+                                </>
+                            ) : (
+                                <p className='text-lg font-bold mx-2'>Va rugam autentificati-va pentru a putea aduga produse in coș.</p>
+                            )}
+
                         </div>
+                        <ToastContainer
+                        toastStyle={{color: "white", backgroundColor:"#ea580c"}}
+                        theme="colored"
+                    position="bottom-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
                     </article>
                 </div>
+               
             </section>
         </div>
     )
