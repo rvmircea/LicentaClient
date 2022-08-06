@@ -17,7 +17,7 @@ const Navbar = () => {
       <button className='justify'>
         <NavLink to="/" className={({ isActive }) =>
           isActive ? activeStyle : unactiveStyle
-        } >Artizanalii</NavLink>
+        } ><span className='font-semibold'>Artizanalii</span></NavLink>
       </button>
 
       <div className='hidden sm:flex'>
@@ -52,12 +52,14 @@ const Navbar = () => {
         )}
         {isAuthenticated && (
           <>
+          <NavLink to="/cart" className={({ isActive }) =>
+              isActive ? activeStyle : unactiveStyle}>
+                Coș</NavLink>
             <NavLink to="/profile" className="mx-4 hover:text-orange-600">
               Profil
             </NavLink>
             <LogoutButton style='hover:text-orange-600 mx-1 px-3' />
-            <NavLink to="/cart" className={({ isActive }) =>
-            isActive ? activeStyle : unactiveStyle}>Cart</NavLink>
+            
           </>
         )}
       </div>
@@ -94,6 +96,9 @@ const Navbar = () => {
               </Menu.Item>
               {isAuthenticated && (
                 <>
+                <Menu.Item>
+                      <NavLink to="/cart" className="p-2 text-md hover:text-gray-100 hover:bg-orange-700 transition-color duration-100">Cos cumparaturi</NavLink>
+                    </Menu.Item>
                   <Menu.Item>
                     <NavLink to="/profile" className="p-2 text-md hover:text-gray-100 hover:bg-orange-700 transition-color duration-100">Profil</NavLink>
                   </Menu.Item>
@@ -102,6 +107,7 @@ const Navbar = () => {
                       <LogoutButton style='p-2 text-md hover:text-gray-100 hover:bg-orange-700 transition-color duration-100' />
                     </div>
                   </Menu.Item>
+                  
                 </>
               )}
               {
