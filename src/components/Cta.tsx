@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 
 const Cta = () => {
     return (
@@ -46,6 +47,7 @@ const Cta = () => {
                     </section>
                 </div>
             </div>
+
         </main>
     )
 }

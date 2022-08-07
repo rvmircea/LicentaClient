@@ -15,6 +15,7 @@ import CallbackPage from './pages/CallbackPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import Profile from './pages/Profile';
 import ShoppingCart from './pages/ShoppingCart';
+import CheckoutPage from './pages/CheckoutPage';
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
             <Route path="/callback" element={<CallbackPage />} />
             <Route path="/profile" element={<ProtectedRoute component={Profile}/>} />
             <Route path="/cart" element={<ShoppingCart/>} />
+            <Route path="/checkout" element={<CheckoutPage/>} />
             <Route path="*" element={<NotFound/>} />
           </Routes>
         </BrowserRouter>

@@ -3,14 +3,14 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { IUserMetadata } from "../interfaces/IUserMetadata";
 
 const Profile = () => {
-  const { user, isAuthenticated, getAccessTokenWithPopup } = useAuth0();
+  const { user, isAuthenticated, getAccessTokenWithPopup, getAccessTokenSilently } = useAuth0();
   const [userMetadata, setUserMetadata] = useState<IUserMetadata | null>(null);
 
 
   useEffect(() => {
     const getUserMetadata = async () => {
       const domain = "dev-4qy3uxvn.us.auth0.com";
-
+      console.log( await getAccessTokenSilently());
       try {
         const accessToken = await getAccessTokenWithPopup({
           audience: `https://${domain}/api/v2/`,

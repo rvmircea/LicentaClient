@@ -4,8 +4,6 @@ import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import { getCart, removeAllFromCart, removeFromCart } from '../api/cartApi';
-import BackButton from '../components/BackButton';
-import Footer from '../components/Footer';
 import { LoginButton } from '../components/LoginButton';
 import { RegisterButton } from '../components/RegisterButton';
 import { Basket, BasketItem } from '../interfaces/IProductList';
@@ -70,13 +68,13 @@ const ShoppingCart = () => {
                 <section className='px-6 lg:px-12 py-4 lg:py-8 bg-zinc-50 min-h-[94vh]'>
                     <div className='lg:mx-32'>
                         <article className='flex justify-between md:pt-6'>
-                        <h1 className='text-sm md:text-lg font-bold'>Cosul tau de cumpărături:</h1>
+                            <h1 className='text-sm md:text-lg font-bold'>Cosul tau de cumpărături:</h1>
                             {data && data?.totalItems > 0 ? <button
                                 onClick={() => handleRemoveAll()}
                                 className='p-1 text-xs md:text-lg lg:p-2 hover:bg-red-600 hover:text-white rounded-md shadow-md border text-red-600 hover:shadow-lg transition-all duration-150'>
                                 Goleste cosul
                             </button> : <></>}
-                            
+
                         </article>
                         {data && data?.basketItems.map((produs: BasketItem) => {
                             return (
@@ -110,35 +108,34 @@ const ShoppingCart = () => {
                         })}
                         {
                             data && data?.totalItems > 0 ? <div className='flex items-center '>
-                            <div>
-                                <p>Produse în coș: {data?.totalItems} total</p>
-                                <p>Pret total: <span className='text-orange-700 font-bold'>{data?.totalPrice} RON</span></p>
+                                <div>
+                                    <p>Produse în coș: {data?.totalItems} total</p>
+                                    <p>Pret total: <span className='text-orange-700 font-bold'>{data?.totalPrice} RON</span></p>
+                                </div>
+                                <button className='flex ml-auto p-1 text-sm md:text-lg md:p-2 text-white bg-orange-600 rounded-md shadow-md hover:bg-orange-700 hover:shadow-lg transition-all duration-150'>
+                                    <Link to="/checkout">
+                                        <span>Trimite comanda</span>
+                                    </Link>
+
+                                </button>
                             </div>
-                            <button className='flex ml-auto md:p-2 text-white bg-orange-600 rounded-md shadow-md hover:bg-orange-700 hover:shadow-lg transition-all duration-150'>
-                                <span>Trimite comanda</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 pt-[0.3rem]" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fillRule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                                    <path fillRule="evenodd" d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                                </svg>
-                            </button>
-                        </div>
-                        : 
-                        <div className='p-4 bg-zinc-100 flex flex-col items-start mt-32 md:mt-16 rounded-md shadow-md'>
-                            <p className='text-lg md:text-2xl'>
-                            Cosul tau de cumparaturi este gol
-                            </p>
-                            <p className='text-md md:text-xl'>
-                                Alege una din categoriile de produse: 
-                                <span className='text-orange-600 underline mx-1'><Link to="/products/category/1">Beri</Link></span>
-                                ,
-                                <span className='text-orange-600 underline mx-1'><Link to="/products/category/2">Vinuri</Link></span>
-                                ,
-                                <span className='text-orange-600 underline mx-1'><Link to="/products/category/3">Diverse</Link></span>
-                                
-                            </p>
-                        </div>
+                                :
+                                <div className='p-4 bg-zinc-100 flex flex-col items-start mt-32 md:mt-16 rounded-md shadow-md'>
+                                    <p className='text-lg md:text-2xl'>
+                                        Cosul tau de cumparaturi este gol
+                                    </p>
+                                    <p className='text-md md:text-xl'>
+                                        Alege una din categoriile de produse:
+                                        <span className='text-orange-600 underline mx-1'><Link to="/products/category/1">Beri</Link></span>
+                                        ,
+                                        <span className='text-orange-600 underline mx-1'><Link to="/products/category/2">Vinuri</Link></span>
+                                        ,
+                                        <span className='text-orange-600 underline mx-1'><Link to="/products/category/3">Diverse</Link></span>
+
+                                    </p>
+                                </div>
                         }
-                        
+
                     </div>
                 </section>
                 <ToastContainer
