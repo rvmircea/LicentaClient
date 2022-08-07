@@ -47,6 +47,8 @@ catch(e){
 }
 
 export const removeAllFromCart = async(userId:string | undefined) => {
+    console.log("try");
+    
     try{
         const response = await cartApi.delete("",{params: {userId}});
         return response.data;

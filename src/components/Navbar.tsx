@@ -107,6 +107,7 @@ const Navbar = () => {
                   </Menu.Item>
                   <Menu.Item>
                     <div className='text-md hover:text-gray-100 hover:bg-orange-700 transition-color duration-100'>
+                      <span>Delogare</span>
                       <LogoutButton style='p-2 text-md hover:text-gray-100 hover:bg-orange-700 transition-color duration-100' />
                     </div>
                   </Menu.Item>
