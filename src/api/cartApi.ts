@@ -1,13 +1,12 @@
-import axios, { AxiosError } from "axios";
-import { BasketItem, Product } from "../interfaces/IProductList";
-
+import axios from "axios";
+import { Basket, BasketItem } from "../interfaces/IProductList";
 
 
 export const cartApi = axios.create({
     baseURL: "https://localhost:7121/api/basket",
 })
 
-export const getCart = async (userSub:string | undefined) => {
+export const getCart = async (userSub:string | undefined):Promise<Basket | undefined> => {
     try{
         
     const response = await cartApi.get("",{params: {userId:userSub}});
@@ -51,6 +50,20 @@ export const removeAllFromCart = async(userId:string | undefined) => {
     
     try{
         const response = await cartApi.delete("",{params: {userId}});
+        return response.data;
+    }
+    catch(e){
+        if(axios.isAxiosError(e)){
+            console.error(e.message, e.response);
+        }
+    }
+}
+
+export const removeItemsFromCart = async(basketId:number | undefined) => {
+    console.log("try");
+    
+    try{
+        const response = await cartApi.delete("/all",{params: {basketId}});
         return response.data;
     }
     catch(e){

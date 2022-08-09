@@ -5,7 +5,7 @@ export const cartApi = axios.create({
     baseURL: "https://localhost:7121/create-payment-intent",
 })
 
-export const postPaymentIntent = async (basket: Basket, token:string | undefined) => {
+export const postPaymentIntent = async (basket: Basket | undefined, token:string | undefined) => {
     console.log(basket);
     
     const reponse = await cartApi.post('',basket, {headers: {

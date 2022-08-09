@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { IUserMetadata } from "../interfaces/IUserMetadata";
+import Orders from "../components/Orders";
 
 const Profile = () => {
   const { user, isAuthenticated, getAccessTokenWithPopup, getAccessTokenSilently } = useAuth0();
@@ -39,8 +40,8 @@ const Profile = () => {
   }, [getAccessTokenWithPopup, user?.sub]);
 
   return (
-    <div className="bg-white flex items-center justify-center w-full p-2">
-      <div className="bg-zinc-50 my-32 md:my-48 lg:my-64 flex justify-start items-start flex-row p-4 md:p-12 rounded-md border-2 border-t-zinc-200 shadow-lg ">
+    <div className="bg-white flex flex-col space-y-4 items-center justify-center w-full p-2">
+      <div className="bg-zinc-50 my-32 md:my-48 lg:mt-64 flex justify-start items-start flex-row p-4 md:p-12 rounded-md border-2 border-t-zinc-200 shadow-lg ">
         <div className="my-4" >
           <img className="rounded-md w-16 h-16 lg:w-28 lg:h-28" src={user?.picture} alt={user?.name} />
         </div>
@@ -61,7 +62,7 @@ const Profile = () => {
         </div>
       </div>
       {/* {JSON.stringify(userMetadata)} */}
-      
+      <Orders/>
     </div>
   
   );
