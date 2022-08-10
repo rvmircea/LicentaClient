@@ -1,7 +1,9 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { Disclosure, Transition } from '@headlessui/react'
+import moment from 'moment'
 import React from 'react'
 import { useQuery } from 'react-query'
+import { Link } from 'react-router-dom'
 import { getOrderByUser } from '../api/orderApi'
 import { Order, OrderItem } from '../interfaces/IOrder'
 import LoadingBar from './LoadingBar'
@@ -34,23 +36,27 @@ const Orders = () => {
                         leaveTo="transform opacity-0"
                     >
                         <Disclosure.Panel className="flex flex-col p-2 text-gray-600 bg-zinc-50">
-
                             <div className='flex space-y-2 flex-col'>
                                 {data && data?.map(order => {
                                     return (
-                                        <div key={order.id} className="flex space-x-2">
+                                        <div key={order.id} className="flex space-x-2 font-semibold">
                                             <p>Comanda: {order.id}</p>
-                                            <div className='flex flex-col space-y-2'>
-                                                <div>
+                                            <div className='flex flex-col space-y-4'>
+                                                <div className='bg-zinc-100 p-2 rounded-md shadow-sm'>
+                                                    <p>Produse: </p>
                                                     {order.orderItems.map(orderItem => {
                                                         return (
-                                                            <div key={orderItem.id}>
-                                                                <div className='bg-red-200'>
-                                                                    {orderItem.product.name}
-                                                                </div>
+                                                            <div key={orderItem.id} className="p-2">
+                                                                <p className='underline'>
+                                                                    <Link to={`/products/${orderItem.productId}`}>
+                                                                        {orderItem.product.name}
+                                                                    </Link>
+                                                                </p>
                                                             </div>
                                                         )
                                                     })}
+                                                    <p>Data comanda:  <span>{moment(order.timeCreated).format("MMMM D YYYY, h:mm:ss a")}</span></p>
+                                                    <p className='my-2 '>Total: <span className='text-orange-700'>{order.totalPrice} RON</span></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -59,12 +65,9 @@ const Orders = () => {
                             </div>
                         </Disclosure.Panel>
                     </Transition>
-
                 </>
             )}
-
         </Disclosure>
-
     )
 }
 

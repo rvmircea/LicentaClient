@@ -21,7 +21,6 @@ const CallbackPage = () => {
       const data = await getCart(user?.sub);
       const order = await createOrder(user?.sub, data);
       setRes(order);
-      // await removeItemsFromCart(data?.id)
       await removeAllFromCart(user?.sub);
     }
     remove();
@@ -38,7 +37,6 @@ const CallbackPage = () => {
           <div className='inline-flex'>
             <span><MdOutlineCelebration size={50} /></span><span><MdOutlineCelebration size={50} /></span><span><MdOutlineCelebration size={50} /></span>
           </div>
-          {JSON.stringify(res)}
         </main>
         :
         <main>
