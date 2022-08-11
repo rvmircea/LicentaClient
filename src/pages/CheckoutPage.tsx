@@ -48,7 +48,7 @@ const CheckoutPage = () => {
         <div className='App flex flex-col-reverse space-y-6 md:grid grid-cols-2 my-8 md:mt-40 '>
             {clientSecret && (
                 <>
-                <div className='flex flex-col mx-auto justify-center h-fit p-8 mt-12 lg:mt-32 font-medium border border-zinc-100 shadow-md rounded-md'>
+                <div className='flex flex-col mx-auto justify-center h-fit p-8 mt-12 lg:mt-32 font-semibold border border-zinc-100 shadow-md rounded-md'>
                     <span>Comanda:</span>
                     {basket && basket.basketItems.map(item => {
                         return (

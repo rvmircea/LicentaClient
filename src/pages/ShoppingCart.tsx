@@ -31,7 +31,7 @@ const ShoppingCart = () => {
     });
 
     const { user, isAuthenticated } = useAuth0();
-    const { data, isFetched, refetch } = useQuery<Basket>("GetCart", async () => await getCart(user?.sub));
+    const { data, refetch } = useQuery(["GetCartUser", user], async () => await getCart(user?.sub));
 
     // console.log(data);
     console.log(user?.sub);
