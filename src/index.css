@@ -13,6 +13,10 @@
    animation: single13anim 3s ease-in-out infinite;
 }
 
+ul > li {
+   margin-top: 1rem;
+}
+
 @-webkit-keyframes single13anim {
    0% {
       background-position: 0% 50%

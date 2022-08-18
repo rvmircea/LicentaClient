@@ -73,8 +73,10 @@ const ShoppingCart = () => {
                                 onClick={() => handleRemoveAll()}
                                 className='p-1 text-xs md:text-lg lg:p-2 hover:bg-red-600 hover:text-white rounded-md shadow-md border text-red-600 hover:shadow-lg transition-all duration-150'>
                                 Goleste cosul
-                            </button> : <></>}
-
+                            </button> : 
+                            <>
+                            <p>Nu au fost găsite produse</p>
+                            </>}
                         </article>
                         {data && data?.basketItems.map((produs: BasketItem) => {
                             return (

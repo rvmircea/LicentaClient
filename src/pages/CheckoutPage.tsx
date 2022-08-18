@@ -52,11 +52,11 @@ const CheckoutPage = () => {
                     <span>Comanda:</span>
                     {basket && basket.basketItems.map(item => {
                         return (
-                            
                             <div key={item.id} className="flex p-3 space-x-4 my-2 justify-start bg-zinc-50 border border-zinc-200 rounded-md shadow-sm">
                                 <Link to={`/products/${item?.productId}`} className="underline">
                                 <span>{item.product?.name}</span>
                                 </Link>
+                                <span className='text-sm'>x{item.quantity}</span>
                                 <p className='text-orange-600'>
                                     {item.product?.price} RON
                                 </p>

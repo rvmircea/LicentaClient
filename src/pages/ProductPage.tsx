@@ -105,7 +105,7 @@ const ProductPage = () => {
                             {isAuthenticated ? (
                                 <>
                                     <button onClick={addToCartButton}
-                                        className='flex mx-auto justify-center align-middle p-2 w-1/2 lg:w-1/3 bg-orange-700 hover:bg-orange-600 text-white border-2 border-zinc-200 '>
+                                        className='flex mx-auto justify-center align-middle p-2 w-1/2 lg:w-1/3 bg-orange-700 hover:bg-orange-600 text-white border-2 border-zinc-200 rounded-md shadow-md transition-all duration-150'>
                                         <span className='md:text-md lg:text-xl'>
                                             Adauga in coș
                                         </span>
